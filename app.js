@@ -20,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/kong', proxy('106.51.77.130:9080'));
 app.use('/', proxy('106.51.77.130:9080'));
 
 // catch 404 and forward to error handler
