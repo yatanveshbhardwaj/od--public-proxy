@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Widgets testing</title>
+</head>
+<body>
+<div id="root"></div>
+<div id="root2"></div>
+<script>
+    window.onedirectSettings = {
+        apiKey: {{brandHash}},
+        widgetHash: {{widgetHash}},
+        settings: {
+            widgetPosition: {
+                left: 45,
+                bottom: 70,
+            }
+        }
+    }
+</script>
+<script>
+    window.od = {};
+    var mc = function() {
+        mc.c(arguments);
+    }
+    mc.q = [];
+    mc.c = function(args) {
+        mc.q.push(args)
+    };
+    window.od.messenger = mc;
+    // od.messenger('open');
+</script>
+<script src="/javascripts/od-messaging.main@v1.14.min.js"></script>
+</body>
+</html>

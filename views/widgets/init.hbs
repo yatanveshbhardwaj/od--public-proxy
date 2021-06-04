@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Configure Widget</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .center {
+        margin-top: 4rem;
+        height: 100vh;
+    }
+</style>
+<body>
+<div class="container">
+    <div class="center">
+        <form onSubmit="openWidget();return false;" class="center">
+            <div class="form-group">
+                <label for="brandHash">Brand Hash</label>
+                <input type="text" class="form-control" id="brandHash" aria-describedby="emailHelp"
+                       placeholder="NjE4MV8xNTUxOTM5MDU3MTg4X1ZJQkVS">
+            </div>
+            <div class="form-group">
+                <label for="widgetHash">Widget Hash</label>
+                <input type="text" class="form-control" id="widgetHash" aria-describedby="emailHelp"
+                       placeholder="deeab6fe-3cfd-45f0-86da-e399263bac91">
+            </div>
+            <button type="submit" class="btn btn-primary">Lets go</button>
+        </form>
+    </div>
+</div>
+<script>
+    const openWidget = () => {
+        const brandHash = document.querySelector("#brandHash").value;
+        const widgetHash = document.querySelector("#widgetHash").value;
+        if(!brandHash || !widgetHash){
+          return;
+        }
+        window.location.href = `./widget?brandHash=${brandHash}&widgetHash=${widgetHash}`;
+    }
+</script>
+</body>
+</html>
