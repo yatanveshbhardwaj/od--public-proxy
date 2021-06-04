@@ -57,9 +57,6 @@
 <script>
     document.querySelector("#brandHash").value = localStorage.getItem("brandHash");
     document.querySelector("#widgetHash").value = localStorage.getItem("widgetHash");
-    if (!brandHash || !widgetHash) {
-        return;
-    }
     const openWidget = () => {
         const brandHash = document.querySelector("#brandHash").value;
         const widgetHash = document.querySelector("#widgetHash").value;
