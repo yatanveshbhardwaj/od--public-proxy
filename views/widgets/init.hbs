@@ -10,6 +10,11 @@
 <style>
     .center {
         margin-top: 4rem;
+    }
+
+    body {
+        background-color: #D9AFD9;
+        background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
         height: 100vh;
     }
 </style>
@@ -18,26 +23,51 @@
     <div class="center">
         <form onSubmit="openWidget();return false;" class="center">
             <div class="form-group">
-                <label for="brandHash">Brand Hash</label>
-                <input type="text" class="form-control" id="brandHash" aria-describedby="emailHelp"
-                       placeholder="NjE4MV8xNTUxOTM5MDU3MTg4X1ZJQkVS">
+                <label for="brandHash">Brand Hash / API Key</label>
+                <input type="text" value="NjE4MV8xNTUxOTM5MDU3MTg4X1ZJQkVS" class="form-control" id="brandHash"
+                       aria-describedby="emailHelp">
             </div>
             <div class="form-group">
                 <label for="widgetHash">Widget Hash</label>
-                <input type="text" class="form-control" id="widgetHash" aria-describedby="emailHelp"
-                       placeholder="deeab6fe-3cfd-45f0-86da-e399263bac91">
+                <input type="text" class="form-control" id="widgetHash" aria-describedby="emailHelp">
             </div>
             <button type="submit" class="btn btn-primary">Lets go</button>
         </form>
+        <table style="margin-top: 2rem;" class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Brand Name</th>
+                <th scope="col">Brand Hash</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Oyo Rooms</td>
+                <td>NjE4MV8xNTUxOTM5MDU3MTg4X1ZJQkVS</td>
+            </tr>
+            <tr>
+                <td>Fb Tweet Sonu</td>
+                <td>MTAwMjZfMTYyMTQ5MTQ0MF80</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+
 </div>
 <script>
+    document.querySelector("#brandHash").value = localStorage.getItem("brandHash");
+    document.querySelector("#widgetHash").value = localStorage.getItem("widgetHash");
+    if (!brandHash || !widgetHash) {
+        return;
+    }
     const openWidget = () => {
         const brandHash = document.querySelector("#brandHash").value;
         const widgetHash = document.querySelector("#widgetHash").value;
-        if(!brandHash || !widgetHash){
-          return;
+        if (!brandHash || !widgetHash) {
+            return;
         }
+        localStorage.setItem("widgetHash", widgetHash);
+        localStorage.setItem("brandHash", brandHash);
         window.location.href = `./widget?brandHash=${brandHash}&widgetHash=${widgetHash}`;
     }
 </script>
