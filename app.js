@@ -4,10 +4,18 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const proxy = require('express-http-proxy');
+const hbs = require('hbs');
 
 const indexRouter = require('./routes/index');
 const testingRouter = require('./routes/testing');
 const {baseUrl} = require("./config/constants");
+
+hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerHelper('component', (partial, options) => {
+  const template = hbs.compile(hbs.handlebars.partials[partial])
+  const html = template(options.hash)
+  return new hbs.SafeString(html)
+})
 
 const app = express();
 
