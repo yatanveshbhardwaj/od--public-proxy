@@ -11,11 +11,8 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/widgets/init', function (req, res, next) {
-  let {docker} = req.query;
-  if (!docker) docker = 28;
   res.render('widgets/init', {
-    partialName: 'gradientBeta',
-    docker
+    partialName: 'gradientBeta'
   });
 });
 
