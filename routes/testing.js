@@ -11,17 +11,22 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/widgets/init', function (req, res, next) {
+  let {docker} = req.query;
+  if (!docker) docker = 28;
   res.render('widgets/init', {
-    partialName:'gradientBeta'
+    partialName: 'gradientBeta',
+    docker
   });
 });
 
 router.get('/widgets/widget', function (req, res, next) {
-  const {widgetHash, brandHash} = req.query;
+  let {widgetHash, brandHash,docker} = req.query;
+  if (!docker) docker = 28;
   res.render('widgets/widget', {
     widgetHash,
     brandHash,
-    partialName:'gradientBeta'
+    partialName: 'gradientBeta',
+    docker
   });
 });
 
