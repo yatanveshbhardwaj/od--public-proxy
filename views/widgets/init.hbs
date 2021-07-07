@@ -30,6 +30,27 @@
                 <label for="widgetHash">Docker</label>
                 <input type="text" class="form-control" id="docker" aria-describedby="emailHelp">
             </div>
+            <div class="form-group">
+                <label for="brandHash">Theme</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" value="blank" name="theme" id="blank">
+                    <label class="form-check-label" for="blank">
+                        Blank
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" value="gradientBeta" name="theme" id="gradientBeta">
+                    <label class="form-check-label" for="gradientBeta">
+                        Dynamic colors
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="random" name="theme" id="random">
+                    <label class="form-check-label" for="random">
+                        Random
+                    </label>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">Let's go</button>
         </form>
         <table style="margin-top: 2rem;" class="table table-dark">
@@ -57,17 +78,32 @@
     document.querySelector("#brandHash").value = localStorage.getItem("brandHash");
     document.querySelector("#widgetHash").value = localStorage.getItem("widgetHash");
     document.querySelector("#docker").value = localStorage.getItem("docker") || 28;
+    const storageTheme = localStorage.getItem("docker") || 'gradientBeta';
+    const themes = document.getElementsByName('theme');
+    for(let i = 0; i < themes.length; i++) {
+        if(themes[i].value === storageTheme){
+            themes[i].checked = true;
+        }
+    }
     const openWidget = () => {
         const brandHash = document.querySelector("#brandHash").value;
         const widgetHash = document.querySelector("#widgetHash").value;
         const docker = document.querySelector("#docker").value;
+        const themes = document.getElementsByName('theme');
+        let themeName = 'gradientBeta';
+        for(let i = 0; i < themes.length; i++) {
+            if(themes[i].checked){
+                themeName = themes[i].value;
+            }
+        }
         if (!brandHash || !widgetHash) {
             return;
         }
         localStorage.setItem("widgetHash", widgetHash);
         localStorage.setItem("brandHash", brandHash);
         localStorage.setItem("docker", docker);
-        window.location.href = `./widget?brandHash=${brandHash}&widgetHash=${widgetHash}&docker=${docker}`;
+        localStorage.setItem("theme", themeName);
+        window.location.href = `./widget?brandHash=${brandHash}&widgetHash=${widgetHash}&docker=${docker}&theme=${themeName}`;
     }
 </script>
 </body>

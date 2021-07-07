@@ -17,12 +17,26 @@ router.get('/widgets/init', function (req, res, next) {
 });
 
 router.get('/widgets/widget', function (req, res, next) {
-  let {widgetHash, brandHash,docker} = req.query;
+  let {widgetHash, brandHash, docker, theme} = req.query;
+  let partialName;
   if (!docker) docker = 28;
+  switch (theme) {
+    case 'blank':
+      partialName = 'blank';
+      break;
+    case 'random':
+      partialName = getRandomPartialName();
+      break;
+    case 'gradientBeta':
+      partialName = 'gradientBeta';
+      break;
+    default:
+      partialName = "gradientBeta";
+  }
   res.render('widgets/widget', {
     widgetHash,
     brandHash,
-    partialName: 'gradientBeta',
+    partialName,
     docker
   });
 });
