@@ -30,6 +30,9 @@ router.get('/widgets/widget', function (req, res, next) {
     case 'gradientBeta':
       partialName = 'gradientBeta';
       break;
+    case 'stars':
+      partialName = 'stars';
+      break;
     default:
       partialName = "gradientBeta";
   }
