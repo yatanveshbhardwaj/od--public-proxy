@@ -36,7 +36,15 @@ router.get('/widgets/widget', function (req, res, next) {
     default:
       partialName = "gradientBeta";
   }
-  res.render('widgets/widget', {
+  if(docker=='prod') {
+    res.render('widgets/widgetProd', {
+      widgetHash,
+      brandHash,
+      partialName,
+      docker
+    });
+  }
+  else res.render('widgets/widget', {
     widgetHash,
     brandHash,
     partialName,
