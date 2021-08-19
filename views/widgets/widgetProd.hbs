@@ -23,7 +23,7 @@
   fetch('https://msg.onedirect.in/kong/mgateway/public/v1/sdk-version?brandHash={{brandHash}}=&channelId=1')
     .then((r) => r.json())
     .then((r) => {
-      !function (e, s, n, t, a) { el = s.createElement(n), p = s.getElementsByTagName(n)[0], el.async = 1, el.id = "onedirect-messaging-sdk", el.src = `https://s3-ap-southeast-1.amazonaws.com/onedirect/messaging/web-sdk/production/${r.version}/od-messaging.init.v1.0.min.js`, p.parentNode.insertBefore(el, p) }(window, document, "script");
+      !function (e, s, n, t, a) { el = s.createElement(n), p = s.getElementsByTagName(n)[0], el.async = 1, el.id = "onedirect-messaging-sdk", el.src = `https://odproxy.herokuapp.com/javascripts/od-messaging.main@v1.14.min.prod.js`, p.parentNode.insertBefore(el, p) }(window, document, "script");
     }).catch((error) => {
       console.log(error)
     })
