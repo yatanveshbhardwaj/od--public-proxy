@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const proxy = require('express-http-proxy');
 const hbs = require('hbs');
+var cors = require('cors')
 
 const indexRouter = require('./routes/index');
 const testingRouter = require('./routes/testing');
@@ -18,6 +19,7 @@ hbs.registerHelper('component', (partial, options) => {
 })
 
 const app = express();
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
